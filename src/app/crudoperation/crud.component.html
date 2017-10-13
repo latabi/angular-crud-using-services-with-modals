@@ -1,0 +1,103 @@
+ <div class="container">
+<add></add>
+                <table class="table">
+                    <tr>
+                        <th>S.No </th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th> 
+                        <th>Address</th>
+                        <th>State</th>
+                        <th>City</th>
+                        <th>Action</th>
+
+                    </tr>
+                    <tr *ngFor="let information of info; let i = index" >
+                        <td>{{i+1}}</td>
+                        <td>{{information.Name}}</td>
+                        <td>{{information.Phone}}</td>
+                        <td>{{information.Email}}</td>
+                        <td>{{information.Address}}</td>
+                        <td>{{information.State}}</td>
+                        <td>{{information.City}}</td>
+                        <td><button class="btn btn-warning" type="button" (click)="edit(tempEdit, information)"> Edit </button> <button class="btn btn-danger btn-sm" type="button" (click)="delete(tempDelete, information)"> Delete</button> </td>
+                        <!--<td (click)="delete()">delete</td>-->
+                        
+
+                    </tr>
+                </table>
+
+            </div>
+
+    
+
+  <template #tempEdit>
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Edit</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                           <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+    
+    <form [formGroup]="complexForm" (ngSubmit)="submitFormForEdit(complexForm.value)">
+    
+    <div class="adddata">      
+    <div class="container">
+     
+            <div class="formPart">
+                <div class="form-group">
+                   <input style="display:none;" class="form-control" type="text"  [(ngModel)]="UserInfo.Id"  [formControl]="complexForm.controls['Id']">
+                    <input class="form-control" type="text"  [(ngModel)]="UserInfo.Name"  [formControl]="complexForm.controls['Name']">
+                </div>
+                <div class="form-group">
+                    <input   class="form-control" type="text" [(ngModel)]="UserInfo.Phone" [formControl]="complexForm.controls['Phone']">
+                </div>
+                <div class="form-group">
+                    <input   class="form-control" type="text" [(ngModel)]="UserInfo.Email" [formControl]="complexForm.controls['Email']">
+                </div>
+                <div class="form-group">
+                    <input   class="form-control" type="text" [(ngModel)]="UserInfo.Address" [formControl]="complexForm.controls['Address']">
+                </div>
+         
+       
+
+         
+                <div class="form-group">
+                    <input    class="form-control" type="text" [(ngModel)]="UserInfo.State" [formControl]="complexForm.controls['State']">
+                </div>
+          
+
+           
+                <div class="form-group">
+                    <input  class="form-control" type="email" [(ngModel)]="UserInfo.City" [formControl]="complexForm.controls['City']">
+                </div>
+         
+    </div>
+        <div class="submitbtn">
+            <button class="btn btn-primary submit" [disabled]="!complexForm.valid" (click)="modalRef.hide()">Submit</button>
+        </div>
+        
+    </div>
+    </div>
+    </form>
+</template>
+
+<template #tempDelete>
+<div class="modal-header">
+            <h4 class="modal-title pull-left">Remove </h4>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+       </button>
+        </div>
+  <form [formGroup]="complexForm" (ngSubmit)="deleteUser(complexForm.value)">
+        
+        <div class="modal-body">
+            Are you sure you want to remove this ?
+            <textarea cols="20" rows="20" style="display:none;"[(ngModel)]="UserInfo.Id" [formControl]="complexForm.controls['Id']"></textarea>
+        </div>
+        <div class="submitbtn">
+            <button class="btn btn-primary delete" (click)="modalRef.hide()">Remove</button>
+           
+        </div>
+    </form>
+</template>

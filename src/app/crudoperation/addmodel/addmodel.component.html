@@ -1,0 +1,67 @@
+       <button type="button" class="btn btn-info" (click)="openModal(template)">Add Person</button>
+        <template #template>
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">Add Person</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                           <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+    
+    <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+    
+    <div class="adddata">      
+    <div class="container">
+      <div class="formPart">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder=" Name" [formControl]="complexForm.controls['Name']">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input   class="form-control" type="text" placeholder="Phone" [formControl]="complexForm.controls['Phone']">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input   class="form-control" type="text" placeholder="Email" [formControl]="complexForm.controls['Email']">
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input   class="form-control" type="text" placeholder="Address" [formControl]="complexForm.controls['Address']">
+                </div>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input    class="form-control" type="text" placeholder="State" [formControl]="complexForm.controls['State']">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input  class="form-control" type="email" placeholder="City" [formControl]="complexForm.controls['City']">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+        <div class="submitbtn">
+            <button class="btn btn-primary submit" [disabled]="!complexForm.valid" (click)="modalRef.hide()">Submit</button>
+        </div>
+        
+    </div>
+
+    </form>
+</template>
